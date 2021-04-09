@@ -13,13 +13,15 @@ export default {
 
 function Template({ title = 'Hello world', counter = 5, textColor, slot }) {
   return html`
-    <kk-tarpaulin
-      style="--kk-tarpaulin-text-color: ${textColor || 'black'}"
-      .title=${title}
-      .counter=${counter}
-    >
-      ${slot}
-    </kk-tarpaulin>
+    <div style="height: calc(100vh);">
+      <kk-tarpaulin
+        style="--kk-tarpaulin-text-color: ${textColor || 'black'}"
+        .title=${title}
+        .counter=${counter}
+      >
+        ${slot}
+      </kk-tarpaulin>
+    </div>
   `;
 }
 

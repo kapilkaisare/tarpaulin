@@ -4,34 +4,46 @@ export class KkTarpaulin extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: block;
-        padding: 25px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
         color: var(--kk-tarpaulin-text-color, #000);
+      }
+
+      #container {
+        width: 100%;
+        flex-grow: 1;
+        background-color: #000000;
       }
     `;
   }
 
   static get properties() {
     return {
-      title: { type: String },
-      counter: { type: Number },
+
     };
   }
 
   constructor() {
     super();
-    this.title = 'Hey there';
-    this.counter = 5;
+    this.c = document.createElement('canvas');
   }
 
-  __increment() {
-    this.counter += 1;
+  firstUpdated() {
+    this.appendCanvas();
   }
 
   render() {
     return html`
-      <h2>${this.title} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
+    <div id="container"></div>
     `;
+  }
+
+  appendCanvas() {
+    const container = this.shadowRoot.getElementById('container');
+    this.c.setAttribute('width', container.clientWidth);
+    this.c.setAttribute('height', container.clientHeight);
+    container.appendChild(this.c);
   }
 }
